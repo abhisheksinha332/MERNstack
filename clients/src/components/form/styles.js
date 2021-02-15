@@ -13,12 +13,17 @@ export default makeStyles((theme)=>({
         display:'flex',
         flexWrap:'wrap',
         justifyContent:'center',
+        
+    },
+    text:{
+        margin: theme.spacing(1),
     },
     fileInput:{
         width:'97%',
-        margin:'10px 0',
+        margin:'20px 0',
     },
     buttonSubmit:{
         marginButton:10,
+        margin: theme.spacing(1),
     },
 }))
