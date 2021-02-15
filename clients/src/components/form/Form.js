@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import {TextField, Paper, Typography, Button} from '@material-ui/core';
 import FileBase from 'react-file-base64';
+import {useDispatch } from 'react-redux';
 import useStyles from './styles';
+import { createPost } from '../../actions/Posts';
 
 const Form = () => {
     const [PostData, setPostData] = useState({
@@ -12,8 +14,10 @@ const Form = () => {
         selectedFile:''
     })
     const classes = useStyles();
-    const handleSubmit = () => {
-
+    const dispatch = useDispatch();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(createPost(PostData));
     }
     const clear = () => {
 
@@ -39,7 +43,7 @@ const Form = () => {
                 variant="outlined"
                 label="Title" 
                 fullWidth
-                value={PostData.creator}
+                value={PostData.title}
                 onChange={(e)=>{setPostData({...PostData,title:e.target.value})}}
              > 
              </TextField>
@@ -49,7 +53,7 @@ const Form = () => {
                 variant="outlined"
                 label="Message" 
                 fullWidth
-                value={PostData.creator}
+                value={PostData.message}
                 onChange={(e)=>{setPostData({...PostData,message:e.target.value})}}
              > 
              </TextField>
@@ -59,7 +63,7 @@ const Form = () => {
                 variant="outlined"
                 label="Tags" 
                 fullWidth
-                value={PostData.creator}
+                value={PostData.tags}
                 onChange={(e)=>{setPostData({...PostData,tags:e.target.value})}}
              > 
              </TextField>
@@ -77,10 +81,10 @@ const Form = () => {
              variant = "contained"
              color="primary"
              size="large"
+             onClick={handleSubmit}
              fullWidth>Submit</Button>
              <Button 
               className={classes.buttonSubmit}
-             contentEditable
              onClick={clear}
              variant = "contained"
              color="secondary"

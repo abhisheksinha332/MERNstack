@@ -8,7 +8,7 @@ export default (Posts= [] , action) => {
             return action.payload;
             
         case 'CREATE':
-            return Posts;
+            return [...Posts,action.payload];
            
     
         default:
