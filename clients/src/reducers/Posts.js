@@ -4,6 +4,8 @@ export default (Posts= [] , action) => {
     // }
 
     switch (action.type) {
+        case 'DELETE':
+            return Posts.filter((Post) => Post._id !== action.payload);
         case 'UPDATE':
             return Posts.map((Post)=> Post._id === action.payload._id ? action.payload : Post);
         case 'FETCH_ALL':
@@ -12,7 +14,6 @@ export default (Posts= [] , action) => {
         case 'CREATE':
             return [...Posts,action.payload];
            
-    
         default:
           return Posts;
     }

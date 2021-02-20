@@ -25,19 +25,28 @@ const Form = ({currentId, setCurrentId}) => {
         e.preventDefault();
         if(currentId){
             dispatch(updatePost(currentId,PostData));  
+            clear();
         }
         else{
         dispatch(createPost(PostData));
+        clear();
         }
     }
     const clear = () => {
-
+        setCurrentId=null;
+        setPostData({
+            creator: '',
+            title: '',
+            message: '',
+            tags:'',
+            selectedFile:''
+        })
     }
     
     return(
        <Paper className={classes.paper}>
            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}></form>
-            <Typography variant="h6">Creating Post</Typography>
+            <Typography variant="h6">{currentId ? 'Editing' : 'Creating'} Post</Typography>
             <TextField 
                 className={classes.text}
                 name="creator" 
