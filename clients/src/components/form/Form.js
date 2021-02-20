@@ -84,7 +84,7 @@ const Form = ({currentId, setCurrentId}) => {
                 label="Tags" 
                 fullWidth
                 value={PostData.tags}
-                onChange={(e)=>{setPostData({...PostData,tags:e.target.value})}}
+                onChange={(e)=>{setPostData({...PostData,tags:e.target.value.split(',')})}}
              > 
              </TextField>
              <div className={classes.fileInput}>

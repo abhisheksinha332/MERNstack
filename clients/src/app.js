@@ -25,7 +25,7 @@ const App = () => {
                 <img className={classes.image} src={feeds} alt="feeds" height="120" />
             </AppBar>
             <Grow in>
-                <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+                <Grid className={classes.formBody} container  justify="space-between" alignItems="stretch" spacing={3}>
                     <Grid item xs={12} sm={7}>
                         <Posts setCurrentId={setCurrentId} />
                     </Grid>
