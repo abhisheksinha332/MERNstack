@@ -6,7 +6,7 @@ import dotenv from 'dotenv'
 import postRoutes from './routes/posts.js';
 
 const app = express();
-dotenv.config();
+dotenv.config(); 
 
 
 
@@ -16,7 +16,10 @@ app.use(cors());
 
 app.use('/posts', postRoutes);
 
-// const CONNECTION_URL = 'mongodb+srv://nemesis:@8271Abhishek@cluster0.fkp24.mongodb.net/<dbname>?retryWrites=true&w=majority';
+app.get('/',(req,res)=>{
+    res.send('Welcome to your Feed');
+})
+
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.CONNECTION_URL,{ useNewUrlParser:true, useUnifiedTopology:true})
