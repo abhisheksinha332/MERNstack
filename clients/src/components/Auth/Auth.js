@@ -1,8 +1,10 @@
 import React,{useState} from 'react';
-import { Avatar, Button, Paper, Grid, Typography, Container, TextField } from '@material-ui/core';
+import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
+import { GoogleLogin } from 'react-google-login';
 import LockOutLinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './styles';
 import FormInput from './FormInput';
+
 
 const Auth = () => {
     const [showPassword, setShowPassword]= useState(false);
@@ -22,6 +24,14 @@ const Auth = () => {
         setSignUp((prevSignUp)=> !prevSignUp); 
         showPasswordHandler(false);
     }
+
+     const googleSuccess = async(res) => {
+        console.log(res);
+     };
+
+     const googleFailure = () => {
+        console.log("Google Sign In was unsuccessful... Try Again")
+     };
 
     return (
         <div>
@@ -52,6 +62,15 @@ const Auth = () => {
                             { signUp && <FormInput name="confirm Password" label="Confirm Password" changeHandler={changeHandler} type="password"   />  }
                         </Grid>
                         <Button type="submit" className={classes.Button} fullWidth variant="contained" color="primary">{signUp ? 'Sign Up' : 'Sign In'}</Button>
+                        <GoogleLogin 
+                            clientId="786629392586-994c2dbio06dvu1oqu887krqpfig0uki.apps.googleusercontent.com"
+                            render={(renderProps) => (
+                                <Button className={classes.googleButton} color="primary" fullWidth onClick={renderProps.onClick} variant="contained" disabled={renderProps.disabled}  >Sign In using Google</Button>
+                            )}
+                            onSuccess={googleSuccess}
+                            onFailure={googleFailure}
+                            cookiePolicy="single_host_origin"
+                        />
                         <Grid container justify="flex-end">
                             <Grid item >
                                 <Button onClick={statusHandler}>{signUp ? 'Already have an account ? Sign In': 'New user ? Sign Up'}</Button>
