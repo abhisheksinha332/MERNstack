@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 const Form = ({currentId, setCurrentId}) => {
     const [PostData, setPostData] = useState({
-        creator: '',
+       
         title: '',
         message: '',
         tags:'',
@@ -18,24 +18,36 @@ const Form = ({currentId, setCurrentId}) => {
     const Post = useSelector((state)=> currentId ? state.Posts.find((p)=>p._id === currentId): null );
     const classes = useStyles();
     const dispatch = useDispatch();
+    const user = JSON.parse(localStorage.getItem('profile'));
     useEffect (()=>{
         if(Post) setPostData(Post);
     },[Post])
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if(currentId){
-            dispatch(updatePost(currentId,PostData));  
+            dispatch(updatePost(currentId,{...PostData, name :user?.result?.name}));  
             clear();
         }
         else{
-        dispatch(createPost(PostData));
+        dispatch(createPost({...PostData, name :user?.result?.name}));
         clear();
         }
     }
+
+    if(!user?.result?.name){
+        return(
+            <Paper className={classes.paper}>
+                <Typography variant="h6" align="center">
+                    Please Sign In to create your Post
+                </Typography>
+            </Paper>
+        )
+    }
+
     const clear = () => {
         setCurrentId=null;
         setPostData({
-            creator: '',
+           
             title: '',
             message: '',
             tags:'',
@@ -47,7 +59,7 @@ const Form = ({currentId, setCurrentId}) => {
        <Paper className={classes.paper}>
            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}></form>
             <Typography variant="h6">{currentId ? 'Editing' : 'Creating'} Post</Typography>
-            <TextField 
+            {/* <TextField 
                 className={classes.text}
                 name="creator" 
                 variant="outlined"
@@ -56,7 +68,7 @@ const Form = ({currentId, setCurrentId}) => {
                 value={PostData.creator}
                 onChange={(e)=>{setPostData({...PostData,creator:e.target.value})}}
              > 
-             </TextField>
+             </TextField> */}
             <TextField
                 className={classes.text} 
                 name="title" 

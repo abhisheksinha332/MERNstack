@@ -17,7 +17,7 @@ const Post = ({Post, setCurrentId}) => {
         <Card className={classes.card}>
             <CardMedia className={classes.media} image={Post.selectedFile} title={Post.title} />
         <div className={classes.overlay}>
-            <Typography variant="h6">{Post.creator}</Typography>
+            <Typography variant="h6">{Post.name}</Typography>
             <Typography variant="body2">{moment(Post.createdAt).fromNow()}</Typography>
         </div>
         <div className={classes.overlay2}>

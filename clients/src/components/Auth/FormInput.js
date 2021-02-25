@@ -16,13 +16,13 @@ const FormInput = ({half, name, changeHandler, autoFocus, type, label, showPassw
                 label={label}
                 required
                 variant="outlined"
-                inputProps={name === 'password' && {
+                InputProps={name === 'password' ? {
                     endAdornment:(
                         <InputAdornment position="end">
                             <IconButton onClick={showPasswordHandler}>{type === "password" ? <Visibility /> : <VisibilityOff />}</IconButton>
                         </InputAdornment>
                     ),
-                } 
+                } : null
                 }
                  />
         </Grid>

@@ -36,7 +36,7 @@ const Auth = () => {
 
     const statusHandler = () => {
         setSignUp((prevSignUp)=> !prevSignUp); 
-        showPasswordHandler(false);
+        setShowPassword(false); 
     }
 
      const googleSuccess = async(res) => {
