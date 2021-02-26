@@ -73,7 +73,7 @@ return res.status(404).send(`No post with id: ${id}`);
         const post = await PostMessage.findById(id);
 
 //     const index= post.likes.findIndex((id)=> id === String(req.userId));
-        const index = post.likes.findIndex((id) => id ===String(req.userId));
+        const index = post.likes.findIndex((id) => id === String(req.userId));
 
 //     if(index=== -1){
 //         post.likes.push(req,userId);
