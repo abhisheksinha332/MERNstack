@@ -1,5 +1,9 @@
+  
+import express from 'express';
 import PostMessage from '../models/postMessage.js';
+
 import mongoose from 'mongoose';
+import router from '../routes/posts.js';
 
 
 export const getPosts = async (req, res)=> {
@@ -48,29 +52,66 @@ export const deletePost = async(req,res) => {
     res.json({message: 'Post Deleted'});
 }
 
-export const likePost = async(req,res) => {
-    const{ id } = req.params;
+// export const likePost = async(req,res) => {
+    export const likePost = async (req, res) => {
+//     const{ id } = req.params;
+       const { id } = req.params;
+      
+//     if(!req.userId) return res.json({message:'Permission denied'})
+    if (!req.userId) {
+     return res.json({ message: "Permission Denied" });
+  }
 
-    if(!req.userId) return res.json({message:'Permission denied'})
-
-    if(!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).send("Post not found !");
-
-    const post = await PostMessage.findById(id);
-
-    const index= post.likes.findIndex((id)=> id === String(req.userId));
-
-    if(index=== -1){
-        post.likes.push(req,userId);
-    }
-    else{
-        post.likes = post.likes.filter((id)=>id !== String(req.userId));
-    }
-
-    const updatedPost = await PostMessage.findByIdAndUpdate(id, post ,{new: true});
-                                                                    
-    res.json(updatedPost ); 
-
-
+//     if(!mongoose.Types.ObjectId.isValid(id))
+//     return res.status(404).send("Post not found !");
+if (!mongoose.Types.ObjectId.isValid(id)) {
+return res.status(404).send(`No post with id: ${id}`);
 }
+
+//     const post = await PostMessage.findById(id);
+
+        const post = await PostMessage.findById(id);
+
+//     const index= post.likes.findIndex((id)=> id === String(req.userId));
+        const index = post.likes.findIndex((id) => id ===String(req.userId));
+
+//     if(index=== -1){
+//         post.likes.push(req,userId);
+//     }
+//     else{
+//         post.likes = post.likes.filter((id)=>id !== String(req.userId));
+//     }
+if (index === -1) {
+    post.likes.push(req.userId);
+  } else {
+    post.likes = post.likes.filter((id) => id !== String(req.userId));
+  }
+
+//     const updatedPost = await PostMessage.findByIdAndUpdate(id, post ,{new: true});
+        const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
+                                                                    
+//     res.json(updatedPost );
+        res.status(200).json(updatedPost); 
+          
+}
+
+
+
+// }
+
+
+    
+
+   
+
+ 
+    
+
+    
+
+   
+    
+
+
+
 

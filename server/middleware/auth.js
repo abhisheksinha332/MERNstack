@@ -2,7 +2,7 @@
 
 // const Auth = async(req,res, next)=>{
 //     try {
-//        const token = req.headers.authoeization.split("")[1];
+//        const token = req.headers.authorization.split("")[1];
 //        const isCustomAuth = token.length <500;
 //        let decodedData;
 //        if(token && isCustomAuth){
@@ -14,7 +14,7 @@
 
 //            req.userId= decodedData?.sub;
 //        }
-//        nect();
+//        next();
 //     } catch (error) {
 //         console.log(error);
 //     }

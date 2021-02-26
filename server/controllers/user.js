@@ -15,7 +15,7 @@ export const signin = async(req,res) => {
         const verifyPassword = await bcrypt.compare(password, alreadyUser.password);
 
         if(!verifyPassword){
-            return res.status(404).json({message:"Incorrect Username or Password"});
+            return res.status(400).json({message:"Incorrect Username or Password"});
             
         }
 
@@ -35,11 +35,11 @@ export const signup = async(req,res) => {
         const alreadyUser = await UserModal.findOne({ email });
        
         if(alreadyUser){
-            return res.status(404).json({message:"User already exists"});
+            return res.status(400).json({message:"User already exists"});
         }
 
         if(password !== confirmPassword) {
-            return res.status(404).json({message:"Password doesn't match"});
+            return res.status(400).json({message:"Password doesn't match"});
         }
         const passwordHash = await bcrypt.hash(password,12);
 
