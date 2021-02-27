@@ -80,7 +80,7 @@ return res.status(404).send(`No post with id: ${id}`);
 //     }
 //     else{
 //         post.likes = post.likes.filter((id)=>id !== String(req.userId));
-//     }
+ //     }
 if (index === -1) {
     post.likes.push(req.userId);
   } else {

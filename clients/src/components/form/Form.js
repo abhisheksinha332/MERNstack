@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {TextField, Paper, Typography, Button} from '@material-ui/core';
+import {TextField, Paper, Typography, Button,TextareaAutosize} from '@material-ui/core';
+
 import FileBase from 'react-file-base64';
 import {useDispatch } from 'react-redux';
 import useStyles from './styles';
@@ -89,6 +90,9 @@ const Form = ({currentId, setCurrentId}) => {
                 onChange={(e)=>{setPostData({...PostData,message:e.target.value})}}
              > 
              </TextField>
+          
+
+        
             <TextField 
                 className={classes.text}
                 name="tags" 

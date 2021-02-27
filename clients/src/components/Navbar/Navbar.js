@@ -3,7 +3,8 @@ import {Link} from 'react-router-dom';
 import {useHistory, useLocation} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import decode from 'jwt-decode';
-import { AppBar, Button, Typography, Toolbar} from '@material-ui/core';
+import { AppBar, Button, Typography, Toolbar, Avatar} from '@material-ui/core';
+
 import feeds from '../../images/pen.png';
 import useStyles from './style';
 const Navbar = () => {
@@ -43,17 +44,20 @@ const Navbar = () => {
 
 
     return(
-        <div>
-             <AppBar className={classes.appBar } position="static" color="inherit">
+        <div style={{marginBottom:'120px'}}>
+            
+             <AppBar className={classes.appBar } position="fixed"  color="inherit">
                  <div className={classes.brandContainer}>
                  <Typography  className={classes.heading} component={Link} to="/" variant="h2" align="center">Message Feeds</Typography>
                 <img className={classes.image} src={feeds} alt="feeds" height="120" />
                  </div>
                 <Toolbar className={classes.toolbar}>
-                    {user ? (<div className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}
+                {user?.result ? (
+                    <div className={classes.profile}>
+                     <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
                             <Typography variant="h6"  className={classes.userName}>{user.result.name}</Typography>
                             <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
-                    </div>
+                   </div>
                     
                     ) : (
                         <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>

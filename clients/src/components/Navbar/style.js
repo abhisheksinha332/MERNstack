@@ -5,8 +5,7 @@ export default makeStyles((theme)=>({
 
 
 appBar:{
-    borderRadius:15,
-   
+    
     marginTop:'0',
     marginLeft:'0',
     marginRight:'0',
@@ -15,12 +14,14 @@ appBar:{
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center',
-    padding:'0px 50px',
+    padding:'0px 40px',
     width:'100%',
+   
 },
 heading:{
     color:'rgba(0,183,255,1)',
-    fontSize:'30px',
+    fontSize:'25px',
+    
 },
 image:{
     marginLeft:'15px',
