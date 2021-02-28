@@ -22,13 +22,13 @@ const Display = () => {
     return(
         <Grow in>
         <Grid className={classes.formBody} container  justify="space-between" alignItems="stretch" spacing={3}>
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={11} sm={11} md={11}>
                 <Posts setCurrentId={setCurrentId} />
             </Grid>
-            <Grid item xs={12} sm={3}>
-                {/* <Form currentId={currentId} setCurrentId={setCurrentId} /> */}
-                <Transition />
-            </Grid>
+            
+              
+                <Transition currentId={currentId} setCurrentId={setCurrentId}/>
+           
         </Grid>
     </Grow>
     )

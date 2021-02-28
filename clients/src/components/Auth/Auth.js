@@ -20,7 +20,7 @@ const Auth = () => {
 
     const submitHandler = (e) =>{
         e.preventDefault();
-        console.log(submit);
+       
         if(signUp){
             dispatch(signup(submit, history));
         }
@@ -52,7 +52,7 @@ const Auth = () => {
      };
 
      const googleFailure = () => {
-        console.log("Google Sign In was unsuccessful... Try Again")
+        alert("Google Sign In was unsuccessful... Try Again");
      };
 
     return (
@@ -83,11 +83,11 @@ const Auth = () => {
                             <FormInput name="password" label= "Password" changeHandler={changeHandler} type={showPassword?"text":"password"} showPasswordHandler={showPasswordHandler} />
                             { signUp && <FormInput name="confirmPassword" label="Confirm Password" changeHandler={changeHandler} type="password"   />  }
                         </Grid>
-                        <Button type="submit" className={classes.Button} fullWidth variant="contained" color="primary">{signUp ? 'Sign Up' : 'Sign In'}</Button>
+                        <Button type="submit" style={{marginTop:'10px'}} className={classes.Button} fullWidth variant="contained" color="primary">{signUp ? 'Sign Up' : 'Sign In'}</Button>
                         <GoogleLogin 
                             clientId="786629392586-994c2dbio06dvu1oqu887krqpfig0uki.apps.googleusercontent.com"
                             render={(renderProps) => (
-                                <Button className={classes.googleButton} color="primary" fullWidth onClick={renderProps.onClick} variant="contained" disabled={renderProps.disabled}  >Sign In using Google</Button>
+                                <Button className={classes.googleButton} style={{marginTop:'20px', background:'#489C17'}} color="primary" fullWidth onClick={renderProps.onClick} variant="contained" disabled={renderProps.disabled}  >Sign In using Google</Button>
                             )}
                             onSuccess={googleSuccess}
                             onFailure={googleFailure}

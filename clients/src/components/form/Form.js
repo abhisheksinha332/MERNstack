@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {TextField, Paper, Typography, Button,TextareaAutosize} from '@material-ui/core';
+import {TextField, Paper, Typography, Button} from '@material-ui/core';
+
 
 import FileBase from 'react-file-base64';
 import {useDispatch } from 'react-redux';
@@ -20,8 +21,13 @@ const Form = ({currentId, setCurrentId}) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
+   
     useEffect (()=>{
-        if(Post) setPostData(Post);
+        if(Post) 
+        {
+           
+            setPostData(Post);
+        }
     },[Post])
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -124,6 +130,7 @@ const Form = ({currentId, setCurrentId}) => {
              onClick={clear}
              variant = "contained"
              color="secondary"
+             style={{background:'red'}}
              size="small"
              fullWidth>Clear</Button>
        </Paper>

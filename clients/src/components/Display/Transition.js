@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -33,11 +33,10 @@ const useeStyles = makeStyles((theme) => ({
 }));
 
 
-export default function TransitionsModal() {
+export default function Transition({currentId, setCurrentId}) {
     const classes = useeStyles();
     const [open, setOpen] = React.useState(false);
-    const [currentId, setCurrentId] = useState(null);
-  
+   
     const handleOpen = () => {
       setOpen(true);
     };
@@ -54,7 +53,7 @@ export default function TransitionsModal() {
           <AddIcon />
         </Fab>
       </Tooltip>
-        {/* </button> */}
+       
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
@@ -72,7 +71,8 @@ export default function TransitionsModal() {
             <Form currentId={currentId} setCurrentId={setCurrentId} />
             </div>
           </Fade>
-        </Modal>
+        </Modal> 
+      
       </div>
     );
   }

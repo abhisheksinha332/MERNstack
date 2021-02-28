@@ -14,13 +14,14 @@ appBar:{
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center',
-    padding:'0px 40px',
+    padding:'0px 20px',
     width:'100%',
    
 },
 heading:{
-    color:'rgba(0,183,255,1)',
-    fontSize:'25px',
+    color:'rgba(0,145,255,1)',
+    fontSize:'35px',
+    fontFamily: 'Satisfy',
     
 },
 image:{
@@ -31,16 +32,24 @@ image:{
 toolbar:{
     display:'flex',
     justifyContent:'flex-end',
-    width:'400px',
+    // width:'300px',
+    marginRight:'50px',
+    width:'100%',
+    
+    
 },
 profile:{
     display:'flex',
     justifyContent:'space-between',
-    width:'400px',
+    // width:'400px',
+    paddingRight:'10px',
+    width:'100%',
 },
 UserName:{
     display:'flex',
     alignItems:'center',
+    marginTop:'30px',
+   
 },
 brandContainer:{
     display:'flex',
@@ -49,5 +58,13 @@ brandContainer:{
 purple:{
     color:theme.palette.getContrastText(deepPurple[500]),
     backgroundColor:deepPurple[500],
-}
+    marginRight:'30px',
+},
+logout:{
+    display:'flex',
+    justifyContent:'space-between',
+    background:'red',
+},
+
+
 }));
